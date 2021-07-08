@@ -1,6 +1,7 @@
 const express = require('express')
 const multer = require('multer')
 const path = require('path')
+const fs = require('fs')
 const AWS = require('aws-sdk');
 const app = express()
 
@@ -53,8 +54,8 @@ function uploadToS3(file) {
   s3bucket.createBucket(function () {
       var params = {
         Bucket: BUCKET_NAME,
-        Key: file.name,
-        Body: file.data
+        Key: file.filename,
+        Body: fs.createReadStream(file.path)
       };
       s3bucket.upload(params, function (err, data) {
         if (err) {
@@ -93,6 +94,7 @@ app.post('/upload', (req, res)=>{
                     msg: 'File Uploaded',
                     file: `uploads/${req.file.filename}`
                 })
+                uploadToS3(req.file)
             }
         }
     })
