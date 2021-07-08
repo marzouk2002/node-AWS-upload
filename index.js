@@ -39,6 +39,33 @@ function checkFileType(file, cb) {
     }
 }
 
+// AWS
+const BUCKET_NAME = 'marzouk-test';
+const IAM_USER_KEY = 'AKIAQQU4RPWAWRVPC64E';
+const IAM_USER_SECRET = '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';
+
+function uploadToS3(file) {
+  let s3bucket = new AWS.S3({
+    accessKeyId: IAM_USER_KEY,
+    secretAccessKey: IAM_USER_SECRET,
+    Bucket: BUCKET_NAME
+  });
+  s3bucket.createBucket(function () {
+      var params = {
+        Bucket: BUCKET_NAME,
+        Key: file.name,
+        Body: file.data
+      };
+      s3bucket.upload(params, function (err, data) {
+        if (err) {
+          console.log('error in callback');
+          console.log(err);
+        }
+        console.log('success');
+        console.log(data);
+      });
+  });
+}
 
 // EJS
 app.set('view engine', 'ejs')
