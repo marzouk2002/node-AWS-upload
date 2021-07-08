@@ -1,7 +1,7 @@
 const express = require('express')
 const multer = require('multer')
 const path = require('path')
-
+const AWS = require('aws-sdk');
 const app = express()
 
 // Set Storage Engine
