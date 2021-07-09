@@ -54,7 +54,7 @@ function uploadToS3(file) {
   s3bucket.createBucket(function () {
       var params = {
         Bucket: BUCKET_NAME,
-        Key: file.filename,
+        Key: 'uploads/' + file.filename,
         Body: fs.createReadStream(file.path)
       };
       s3bucket.upload(params, function (err, data) {
