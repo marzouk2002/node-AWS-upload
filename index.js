@@ -92,7 +92,7 @@ app.post('/upload', (req, res)=>{
             } else {
                 res.render('index', {
                     msg: 'File Uploaded',
-                    file: `uploads/${req.file.filename}`
+                    file: `http://marzouk-test.s3-website-us-east-1.amazonaws.com/uploads/${req.file.filename}`
                 })
                 uploadToS3(req.file)
             }
