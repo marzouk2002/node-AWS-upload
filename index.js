@@ -42,8 +42,8 @@ function checkFileType(file, cb) {
 
 // AWS
 const BUCKET_NAME = 'marzouk-test';
-const IAM_USER_KEY = 'AKIAQQU4RPWAWRVPC64E';
-const IAM_USER_SECRET = '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';
+const IAM_USER_KEY = 'AKIAQQU4RPWA6FTP5H7O';
+const IAM_USER_SECRET = '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';
 
 function uploadToS3(file) {
   let s3bucket = new AWS.S3({
